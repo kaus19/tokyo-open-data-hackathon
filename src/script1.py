@@ -1,4 +1,3 @@
-import tabula
 import pdfplumber
 import pandas as pd
 
@@ -16,9 +15,7 @@ def save_tables_as_csv(tables, output_dir):
         df = pd.DataFrame(table[1:], columns=table[0])
         df.to_csv(f"{output_dir}/table_{i}.csv", index=False)
 
-
 if __name__ == "__main__":
-    pdf_path = "data/raw/step7_errorcode_e.pdf"
+    pdf_path = "data/food.pdf"
     tables = extract_tables_from_pdf(pdf_path)
-    # print(tables)
-    save_tables_as_csv(tables, "data/processed/")
+    save_tables_as_csv(tables, "data/result/1.1/")
