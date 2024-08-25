@@ -30,3 +30,5 @@ Below is a description of the main folders and files in the repository.
 ├── src
 │   ├── script.py
 ```
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

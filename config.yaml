@@ -1,2 +1,3 @@
-PDF_PATH: "data/raw/"
-CSV_PATH: "data/result/"
+PDF_PATH: "data/raw/ome_city_pdf/"
+CSV_PATH: "data/result/ome_city_city"
+WEBPAGE: "https://www.city.ome.tokyo.jp/site/ome-tky/2389.html"
