@@ -32,6 +32,22 @@ def extract_tables_from_pdf(pdf_path):
     except Exception as e:
         logging.error(f"Error occured extracting from pdf {pdf_path}",{e})
     
+def split_row(row):
+    # Determine the maximum number of lines in any cell of the row
+    max_lines = max(len(cell.split('\n')) if cell else 1 for cell in row)
+    
+    # Split each cell by newline and create a new row for each line
+    new_rows = []
+    for i in range(max_lines):
+        new_row = []
+        for cell in row:
+            if cell:
+                lines = cell.split('\n')
+                new_row.append(lines[i] if i < len(lines) else "")
+            else:
+                new_row.append("")
+        new_rows.append(new_row)
+    return new_rows
 
 def save_table_to_csv(tables, csv_filename, output_dir):
     try:
@@ -40,7 +56,10 @@ def save_table_to_csv(tables, csv_filename, output_dir):
             writer = csv.writer(file)
             for table in tables:
                 for row in table:
-                    writer.writerow(row)
+                    split_rows = split_row(row)  # Split the row into multiple rows if needed
+                    for single_row in split_rows:
+                        writer.writerow(single_row)
+                    # writer.writerow(row)
         logging.info(f"Saved CSV: {csv_path}")
     except Exception as e:
         logging.error(f"Error occured saving table to csv {csv_filename}",{e})
